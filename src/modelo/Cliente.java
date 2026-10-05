@@ -6,7 +6,7 @@ package modelo;
 
 /**
  *
- * @author ec745
+ *  * @author Eduardo Cifuentes
  */
 public class Cliente {
 

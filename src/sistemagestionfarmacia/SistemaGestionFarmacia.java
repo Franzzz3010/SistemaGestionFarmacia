@@ -6,7 +6,7 @@ package sistemagestionfarmacia;
 
 /**
  *
- * @author fabia
+ * @author fabian
  */
 public class SistemaGestionFarmacia {
 
