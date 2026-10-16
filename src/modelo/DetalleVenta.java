@@ -5,7 +5,7 @@
 package modelo;
 
 /**
- *
+ * ITADAKIMASSSS
  *  * @author Eduardo Cifuentes
  */
 public class DetalleVenta {
