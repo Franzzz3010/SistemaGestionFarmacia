@@ -66,6 +66,7 @@ public class DetalleCompraDatos {
             ps.setInt(1, idDetalleCompra);
 
             try (ResultSet rs = ps.executeQuery()) {
+
                 if (rs.next()) {
                     return new DetalleCompra(
                             rs.getInt("idDetalleCompra"),
@@ -96,6 +97,7 @@ public class DetalleCompraDatos {
             ps.setInt(1, idCompra);
 
             try (ResultSet rs = ps.executeQuery()) {
+
                 while (rs.next()) {
                     DetalleCompra detalle = new DetalleCompra(
                             rs.getInt("idDetalleCompra"),

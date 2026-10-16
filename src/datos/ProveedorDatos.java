@@ -65,6 +65,7 @@ public class ProveedorDatos {
             ps.setInt(1, idProveedor);
 
             try (ResultSet rs = ps.executeQuery()) {
+
                 if (rs.next()) {
                     return new Proveedor(
                             rs.getInt("idProveedor"),
@@ -81,8 +82,8 @@ public class ProveedorDatos {
     }
 
     public boolean modificar(Proveedor proveedor) throws SQLException {
-        String sql = "UPDATE Proveedor SET nombre = ?, "
-                + "telefono = ?, correo = ?, direccion = ? "
+        String sql = "UPDATE Proveedor SET "
+                + "nombre = ?, telefono = ?, correo = ?, direccion = ? "
                 + "WHERE idProveedor = ?";
 
         try (Connection cn = Conexion.conectar();
@@ -99,7 +100,8 @@ public class ProveedorDatos {
     }
 
     public boolean eliminar(int idProveedor) throws SQLException {
-        String sql = "DELETE FROM Proveedor WHERE idProveedor = ?";
+        String sql = "DELETE FROM Proveedor "
+                + "WHERE idProveedor = ?";
 
         try (Connection cn = Conexion.conectar();
              PreparedStatement ps = cn.prepareStatement(sql)) {

@@ -62,6 +62,7 @@ public class CompraDatos {
             ps.setInt(1, idCompra);
 
             try (ResultSet rs = ps.executeQuery()) {
+
                 if (rs.next()) {
                     return new Compra(
                             rs.getInt("idCompra"),
@@ -77,8 +78,8 @@ public class CompraDatos {
     }
 
     public boolean modificar(Compra compra) throws SQLException {
-        String sql = "UPDATE Compra SET fecha = ?, "
-                + "total = ?, idProveedor = ? "
+        String sql = "UPDATE Compra SET "
+                + "fecha = ?, total = ?, idProveedor = ? "
                 + "WHERE idCompra = ?";
 
         try (Connection cn = Conexion.conectar();
@@ -94,7 +95,8 @@ public class CompraDatos {
     }
 
     public boolean eliminar(int idCompra) throws SQLException {
-        String sql = "DELETE FROM Compra WHERE idCompra = ?";
+        String sql = "DELETE FROM Compra "
+                + "WHERE idCompra = ?";
 
         try (Connection cn = Conexion.conectar();
              PreparedStatement ps = cn.prepareStatement(sql)) {

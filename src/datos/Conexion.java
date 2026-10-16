@@ -8,12 +8,14 @@ import java.sql.SQLException;
 public class Conexion {
 
     private static final String URL =
-            "";
-
-    private static final String USUARIO = "TU_USUARIO";
-    private static final String CLAVE = "TU_CONTRASEÑA";
+            "jdbc:sqlserver://localhost:1433;"
+            + "databaseName=GestionFarmacia;"
+            + "encrypt=true;"
+            + "trustServerCertificate=true;"
+            + "integratedSecurity=true;"
+            + "authenticationScheme=NativeAuthentication;";
 
     public static Connection conectar() throws SQLException {
-        return DriverManager.getConnection(URL, USUARIO, CLAVE);
+        return DriverManager.getConnection(URL);
     }
 }
