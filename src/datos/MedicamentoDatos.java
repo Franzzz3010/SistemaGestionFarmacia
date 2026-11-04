@@ -143,4 +143,27 @@ public boolean aumentarExistencia(Connection cn, int idMedicamento,
     }
 }
 
+public boolean disminuirExistencia(Connection cn, int idMedicamento,
+                                  int cantidad) throws SQLException {
+
+    if (cantidad <= 0) {
+        throw new IllegalArgumentException(
+                "La cantidad debe ser mayor que cero.");
+    }
+
+    String sql = "UPDATE Medicamento "
+            + "SET existencia = existencia - ? "
+            + "WHERE idMedicamento = ? "
+            + "AND existencia >= ?";
+
+    try (PreparedStatement ps = cn.prepareStatement(sql)) {
+
+        ps.setInt(1, cantidad);
+        ps.setInt(2, idMedicamento);
+        ps.setInt(3, cantidad);
+
+        return ps.executeUpdate() == 1;
+    }
+}
+
 }
