@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package modelo;
 
 /**
@@ -68,4 +65,11 @@ public class RecetaMedica {
     public void setMedicamentosAutorizados(String medicamentosAutorizados) {
         this.medicamentosAutorizados = medicamentosAutorizados;
     }
+    
+    @Override
+public String toString() {
+    return "Receta #" + idReceta
+            + " - " + fecha
+            + " - Dr. " + medico;
+}
 }

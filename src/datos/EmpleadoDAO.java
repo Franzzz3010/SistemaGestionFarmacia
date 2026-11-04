@@ -14,9 +14,9 @@ public class EmpleadoDAO {
 
     public boolean insertar(Empleado empleado) {
 
-        String sql = "INSERT INTO empleado "
-                + "(nombre, telefono, correo, puesto) "
-                + "VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO dbo.Empleado "
+        + "(nombre, telefono, correo, cargo) "
+        + "VALUES (?, ?, ?, ?)";
 
         try (Connection con = Conexion.conectar();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -63,7 +63,7 @@ public class EmpleadoDAO {
                         rs.getString("correo"));
 
                 empleado.setPuesto(
-                        rs.getString("puesto"));
+                        rs.getString("cargo"));
 
                 empleados.add(empleado);
             }
@@ -82,7 +82,7 @@ public class EmpleadoDAO {
                 + "nombre = ?, "
                 + "telefono = ?, "
                 + "correo = ?, "
-                + "puesto = ? "
+                + "cargo = ? "
                 + "WHERE idEmpleado = ?";
 
         try (Connection con = Conexion.conectar();

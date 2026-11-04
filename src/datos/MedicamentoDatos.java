@@ -165,5 +165,38 @@ public boolean disminuirExistencia(Connection cn, int idMedicamento,
         return ps.executeUpdate() == 1;
     }
 }
+public List<Object[]> listarConCategoria() throws SQLException {
 
+    List<Object[]> lista = new ArrayList<>();
+
+    String sql = "SELECT m.idMedicamento, m.nombre, "
+            + "m.presentacion, m.precio, m.existencia, "
+            + "m.requiereReceta, c.nombre AS categoria "
+            + "FROM Medicamento m "
+            + "INNER JOIN CategoriaMedicamento c "
+            + "ON m.idCategoria = c.idCategoria "
+            + "ORDER BY m.idMedicamento";
+
+    try (Connection cn = Conexion.conectar();
+         PreparedStatement ps = cn.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
+
+        while (rs.next()) {
+
+            Object[] fila = {
+                rs.getInt("idMedicamento"),
+                rs.getString("nombre"),
+                rs.getString("presentacion"),
+                rs.getDouble("precio"),
+                rs.getInt("existencia"),
+                rs.getBoolean("requiereReceta") ? "Sí" : "No",
+                rs.getString("categoria")
+            };
+
+            lista.add(fila);
+        }
+    }
+
+    return lista;
+}
 }

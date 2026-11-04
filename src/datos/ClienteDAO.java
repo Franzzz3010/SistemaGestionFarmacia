@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ClienteDAO {
 
     public boolean insertar(Cliente cliente) {
@@ -65,48 +66,58 @@ public class ClienteDAO {
         return clientes;
     }
 
-    public boolean actualizar(Cliente cliente) {
+public boolean actualizar(Cliente cliente) {
 
-        String sql = "UPDATE cliente SET "
-                + "nombre = ?, "
-                + "telefono = ?, "
-                + "correo = ?, "
-                + "direccion = ? "
-                + "WHERE idCliente = ?";
+    String sql = "UPDATE Cliente SET "
+            + "nombre = ?, "
+            + "telefono = ?, "
+            + "correo = ?, "
+            + "direccion = ? "
+            + "WHERE idCliente = ?";
 
-        try (Connection con = Conexion.conectar();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+    try (Connection con = Conexion.conectar();
+         PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setString(1, cliente.getNombre());
-            ps.setString(2, cliente.getTelefono());
-            ps.setString(3, cliente.getCorreo());
-            ps.setString(4, cliente.getDireccion());
-            ps.setInt(5, cliente.getIdCliente());
+        ps.setString(1, cliente.getNombre());
+        ps.setString(2, cliente.getTelefono());
+        ps.setString(3, cliente.getCorreo());
+        ps.setString(4, cliente.getDireccion());
+        ps.setInt(5, cliente.getIdCliente());
 
-            ps.executeUpdate();
-            return true;
+        int filasAfectadas = ps.executeUpdate();
 
-        } catch (SQLException e) {
-            System.out.println("Error al actualizar cliente: " + e.getMessage());
-            return false;
-        }
+        return filasAfectadas > 0;
+
+    } catch (SQLException e) {
+
+        System.out.println(
+                "Error al actualizar cliente: " + e.getMessage()
+        );
+
+        return false;
     }
+}
 
     public boolean eliminar(int idCliente) {
 
-        String sql = "DELETE FROM cliente WHERE idCliente = ?";
+    String sql = "DELETE FROM Cliente WHERE idCliente = ?";
 
-        try (Connection con = Conexion.conectar();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+    try (Connection con = Conexion.conectar();
+         PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, idCliente);
+        ps.setInt(1, idCliente);
 
-            ps.executeUpdate();
-            return true;
+        int filasAfectadas = ps.executeUpdate();
 
-        } catch (SQLException e) {
-            System.out.println("Error al eliminar cliente: " + e.getMessage());
-            return false;
-        }
+        return filasAfectadas > 0;
+
+    } catch (SQLException e) {
+
+        System.out.println(
+                "Error al eliminar cliente: " + e.getMessage()
+        );
+
+        return false;
     }
+}
 }

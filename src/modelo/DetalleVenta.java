@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package modelo;
 
 /**
@@ -15,7 +12,9 @@ public class DetalleVenta {
     private int idMedicamento;
     private int cantidad;
     private double precio;
-
+    private Integer idReceta;
+    private int cantidadVerificada;
+    
     public DetalleVenta() {
     }
 
@@ -66,4 +65,19 @@ public class DetalleVenta {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+    public Integer getIdReceta() {
+    return idReceta;
+}
+
+public void setIdReceta(Integer idReceta) {
+    this.idReceta = idReceta;
+}
+
+public int getCantidadVerificada() {
+    return cantidadVerificada;
+}
+
+public void setCantidadVerificada(int cantidadVerificada) {
+    this.cantidadVerificada = cantidadVerificada;
+}
 }

@@ -14,9 +14,9 @@ public class RecetaMedicaDAO {
 
     public boolean insertar(RecetaMedica receta) {
 
-        String sql = "INSERT INTO receta_medica "
+        String sql = "INSERT INTO RecetaMedica "
                 + "(idCliente, medico, fecha, medicamentosAutorizados) "
-                + "VALUES (?, ?, ?, ?)";
+                + "VALUES (?, ?, ?, ?)";    
 
         try (Connection con = Conexion.conectar();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -41,7 +41,7 @@ public class RecetaMedicaDAO {
 
         List<RecetaMedica> recetas = new ArrayList<>();
 
-        String sql = "SELECT * FROM receta_medica";
+        String sql = "SELECT * FROM RecetaMedica";
 
         try (Connection con = Conexion.conectar();
              PreparedStatement ps = con.prepareStatement(sql);
@@ -79,7 +79,7 @@ public class RecetaMedicaDAO {
 
     public boolean actualizar(RecetaMedica receta) {
 
-        String sql = "UPDATE receta_medica SET "
+        String sql = "UPDATE RecetaMedica SET "
                 + "idCliente = ?, "
                 + "medico = ?, "
                 + "fecha = ?, "
@@ -96,9 +96,7 @@ public class RecetaMedicaDAO {
             ps.setString(4, receta.getMedicamentosAutorizados());
             ps.setInt(5, receta.getIdReceta());
 
-            ps.executeUpdate();
-            return true;
-
+            return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println("Error al actualizar receta: "
                     + e.getMessage());
@@ -108,7 +106,7 @@ public class RecetaMedicaDAO {
 
     public boolean eliminar(int idReceta) {
 
-        String sql = "DELETE FROM receta_medica "
+        String sql = "DELETE FROM RecetaMedica "
                 + "WHERE idReceta = ?";
 
         try (Connection con = Conexion.conectar();
@@ -116,8 +114,7 @@ public class RecetaMedicaDAO {
 
             ps.setInt(1, idReceta);
 
-            ps.executeUpdate();
-            return true;
+        return ps.executeUpdate() > 0;  
 
         } catch (SQLException e) {
             System.out.println("Error al eliminar receta: "
